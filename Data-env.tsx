@@ -7,7 +7,7 @@ export default [
     version: "1.0.0-snapshot",
     baseUrl: "https://app1/",
     isAlive: true,
-    contacts:["user1@monitoring.fr", "user2@monitoring.fr"],
+    contacts: ["user1@monitoring.fr", "user2@monitoring.fr"],
     applicationOk: [
       {
         name: "app2",
@@ -23,7 +23,7 @@ export default [
     environnement: EnumEnv.INTEGRATION,
     version: "1.2.0",
     baseUrl: "https://app2",
-    contacts:["user1@monitoring.fr"],
+    contacts: ["user1@monitoring.fr"],
     isAlive: true,
     applicationOk: [
       {
@@ -51,7 +51,7 @@ export default [
     environnement: EnumEnv.DEVELOPPEMENT,
     version: "10.0.1-snapshot",
     baseUrl: "https://app3",
-    contacts:[ "user2@monitoring.fr"],
+    contacts: ["user2@monitoring.fr"],
     isAlive: false,
     applicationOk: [
       {
@@ -75,7 +75,7 @@ export default [
     baseUrl: "https://app4/",
     isAlive: false,
     applicationOk: [],
-    contacts:["user3@monitoring.fr"],
+    contacts: ["user3@monitoring.fr"],
     applicationEchec: []
   },
   {
@@ -84,7 +84,7 @@ export default [
     version: "0.1.1-snapshot",
     baseUrl: "https://app5/",
     isAlive: true,
-    contacts:["user1@monitoring.fr", "user3@monitoring.fr"],
+    contacts: ["user1@monitoring.fr", "user3@monitoring.fr"],
     applicationOk: [],
     applicationEchec: []
   }
