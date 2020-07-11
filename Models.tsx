@@ -1,10 +1,11 @@
 
-enum EnumEnv {
-  DEVELOPPEMENT, INTEGRATION,RECETTE_INTERNE, RECETTE_CLIENT, PREPRODUCTION, PRODUCTION
+export enum EnumEnv {
+  DEVELOPPEMENT="DEVELOPPEMENT",
+   INTEGRATION="INTEGRATION",RECETTE_INTERNE="RECETTE_INTERNE", RECETTE_CLIENT="RECETTE_CLIENT", PREPRODUCTION="PREPRODUCTION", PRODUCTION="PRODUCTION"
 }
 
 
-interface AppliRetour {
+export interface AppliRetour {
 
    nom: string,
   environnement:EnumEnv,
@@ -12,7 +13,7 @@ interface AppliRetour {
 }
 
 
-interface AppliLinksRetour {
+export interface AppliLinksRetour {
 
    nom: string,
   environnement:EnumEnv,
@@ -22,11 +23,11 @@ interface AppliLinksRetour {
 
 }
 
-interface LinksOk extends AppliRetour{
+export interface LinksOk extends AppliRetour{
   url: string
 }
 
-interface LinksKo{
+export interface LinksKo{
   url: string,
   rendInstable : boolean
 }

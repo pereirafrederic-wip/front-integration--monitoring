@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import  Menu from './Menu';
 import './style.css';
-
+import 'antd/dist/antd.css'; 
+import {EnumEnv} from './Models';
 interface AppProps { }
 interface AppState {
   name: string;

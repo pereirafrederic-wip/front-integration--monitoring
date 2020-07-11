@@ -1,30 +1,64 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
-
+import { MailOutlined, AppstoreOutlined,BorderOuterOutlined, SettingOutlined } from '@ant-design/icons';
+import {EnumEnv} from './Models';
+import StateApp from './StateApp';
 const { SubMenu } = Menu;
+
+import apps from './Data-env';
 
 export default class AppMenu extends React.Component {
   state = {
-    current: 'mail',
+    selectedEnv: '',
   };
 
   handleClick = e => {
-    console.log('click ', e);
-    this.setState({ current: e.key });
+    console.log('click ', e.key);
+    this.setState({ selectedEnv: e.key });
   };
 
   render() {
-    const { current } = this.state;
+    const { selectedEnv } = this.state;
+
+
+
+      const domEnv = Object.keys(EnumEnv).map(key => 
+              <SubMenu icon={<SettingOutlined />} title={`${EnumEnv[key]}`} >
+       
+       <Menu.Item key={`${EnumEnv[key]}:ALL`}>All environnement</Menu.Item>
+       {apps.filter(app => app.environnement == key).map((app, appkey) =>
+      
+       <Menu.Item key={`${EnumEnv[key]}:${app.name.toUpperCase()}`}>{app.name}</Menu.Item>
+        )}
+      
+        </SubMenu>
+      )
+
     return (
-      <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
-        <Menu.Item key="mail" icon={<MailOutlined />}>
-          Navigation One
-        </Menu.Item>
-        <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-          Navigation Two
-        </Menu.Item>
-        <SubMenu icon={<SettingOutlined />} title="Navigation Three - Submenu">
+      <div>
+      <Menu onClick={this.handleClick} selectedKeys={[selectedEnv]} mode="horizontal">
+        {domEnv}
+      </Menu>
+      <div className="apps">
+       {selectedEnv && apps.filter(app => app.environnement.concat(':').concat(app.name.toUpperCase()) == selectedEnv || (selectedEnv.endsWith(':ALL')&& selectedEnv.startsWith(app.environnement))).map(app => <StateApp app={app} /> )}
+      </div>
+      </div>
+    );
+  }
+}
+
+/*
+               {apps.filter(app => app.environnement == key).length && <Menu.ItemGroup title="Item 1">
+            <Menu.Item key="setting:1">Option 1</Menu.Item>
+            <Menu.Item key="setting:2">Option 2</Menu.Item>
+                </Menu.ItemGroup>
+          }
+*/
+
+
+/*
+
+<SubMenu icon={<SettingOutlined />} title="Navigation Three - Submenu">
           <Menu.ItemGroup title="Item 1">
             <Menu.Item key="setting:1">Option 1</Menu.Item>
             <Menu.Item key="setting:2">Option 2</Menu.Item>
@@ -34,12 +68,4 @@ export default class AppMenu extends React.Component {
             <Menu.Item key="setting:4">Option 4</Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
-        <Menu.Item key="alipay">
-          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-            Navigation Four - Link
-          </a>
-        </Menu.Item>
-      </Menu>
-    );
-  }
-}
+*/
