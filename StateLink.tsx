@@ -8,17 +8,20 @@ import {
   MailOutlined,
   EyeOutlined
 } from "@ant-design/icons";
-import CardAction from './CardAction';
+import CardAction from "./CardAction";
 import apps from "./Data-env";
 
 export default ({ app }) => (
   <div className="app__links">
     {app.applicationEchec.map(appEchec => (
       <div className="link">
-        <CardAction app={apps
-                .filter(appElement =>
-                  appEchec.url.startsWith(appElement.baseUrl)
-                )[0]} >
+        <CardAction
+          app={
+            apps.filter(appElement =>
+              appEchec.url.startsWith(appElement.baseUrl)
+            )[0]
+          }
+        >
           <Tag color="error">
             <div className="link__info">
               <ApiTwoTone twoToneColor={"red"} /> Disconnected
@@ -49,10 +52,13 @@ export default ({ app }) => (
       .filter(appok => app.environnement != appok.environnement)
       .map(appok => (
         <div className="link">
-          <CardAction  app={apps
-                .filter(appElement =>
-                  appok.url.startsWith(appElement.baseUrl)
-                )[0]} >
+          <CardAction
+            app={
+              apps.filter(appElement =>
+                appok.url.startsWith(appElement.baseUrl)
+              )[0]
+            }
+          >
             <Tag color="error">
               <div className="link__info">
                 <BlockOutlined /> Cross-Envirronement

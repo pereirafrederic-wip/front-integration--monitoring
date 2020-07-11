@@ -11,7 +11,7 @@ export interface AppliRetour {
   nom: string;
   environnement: EnumEnv;
   version: string;
-  contacts :Array<string>;
+  contacts: Array<string>;
   baseUrl: string;
 }
 
