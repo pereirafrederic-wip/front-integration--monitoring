@@ -1,13 +1,21 @@
 import React from "react";
 import { Tooltip, Progress, Tag } from "antd";
-import { Tag, Divider } from "antd";
-import { ApiTwoTone, BlockOutlined } from "@ant-design/icons";
+import { Tag, Divider, Card } from "antd";
+import { ApiTwoTone, BlockOutlined,SettingOutlined ,MailOutlined } from "@ant-design/icons";
 import apps from "./Data-env";
 
 export default ({ app }) => (
   <div className="app__links">
     {app.applicationEchec.map(appEchec => (
       <div className="link">
+        <Card
+          style={{ width: 300, marginTop: 16 }}
+          actions={[
+            <MailOutlined key="mail" />,
+            <SettingOutlined key="setting" />,
+            <SettingOutlined key="edit" />,
+          ]}
+        >
         <Tag color="error">
           <div className="link__info">
             <ApiTwoTone twoToneColor={"red"} /> Disconnected
@@ -27,6 +35,7 @@ export default ({ app }) => (
             <div className="link__info__name">{appEchec.url} </div>
           </div>
         </Tag>
+         </Card>
         <Divider />
       </div>
     ))}
@@ -34,6 +43,14 @@ export default ({ app }) => (
     {
       app.applicationOk.filter(appok => app.environnement != appok.environnement).map(appok => (
       <div className="link">
+       <Card
+          style={{ width: 300, marginTop: 16 }}
+          actions={[
+            <SettingOutlined key="setting" />,
+            <SettingOutlined key="edit" />,
+            <SettingOutlined key="ellipsis" />,
+          ]}
+        >
           <Tag color="error">
             <div className="link__info">
               <BlockOutlined /> Cross-Envirronement
@@ -50,6 +67,7 @@ export default ({ app }) => (
             <div className="link__info__url">{appok.url} </div>
           </div>
         </Tag>
+        </Card>
         <Divider />
       </div>
     ))
