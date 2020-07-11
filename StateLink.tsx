@@ -1,36 +1,71 @@
 import React from "react";
 import { Tooltip, Progress, Tag } from "antd";
-import { Tag } from "antd";
-import {
-AlertTwoTone
-} from '@ant-design/icons';
-
-import apps from './Data-env';
+import { Tag, Divider } from "antd";
+import { ApiTwoTone, BlockOutlined } from "@ant-design/icons";
+import apps from "./Data-env";
 
 export default ({ app }) => (
-  <div className="app-links">
+  <div className="app__links">
+    {app.applicationEchec.map(appEchec => (
+      <div className="link">
+        <Tag color="error">
+          <div className="link__info">
+            <ApiTwoTone twoToneColor={"red"} /> Disconnected
+          </div>
+        </Tag>
 
-{app.applicationEchec.map( appok =>
-        <div className="link">
-        
-        <AlertTwoTone color={'red'}/>
-        <Tag color="error">{appok.url}</Tag>
-        <Tag color="error">{apps.filter.url}</Tag>
-        
-       </div>
-    )}
+        <Tag color="error">
+          <div className="link__info">
+            {apps
+              .filter(appElement => appEchec.url.startsWith(appElement.baseUrl))
+              .map(el => (
+                <div className="link__info">
+                  <div className="link__info__name">{el.name}</div>
+                  <div className="link__info__version">{el.version}</div>
+                </div>
+              ))}
+            <div className="link__info__name">{appEchec.url} </div>
+          </div>
+        </Tag>
+        <Divider />
+      </div>
+    ))}
 
-    {app.applicationOk.map( appok =>
-        <div className="link">
-        
-       <Progress percent={100} size="small" status={
-         app.environnement == appok.environnement ? 'success' : 'exception'
+    {
+      app.applicationOk.filter(appok => app.environnement != appok.environnement).map(appok => (
+      <div className="link">
+          <Tag color="error">
+            <div className="link__info">
+              <BlockOutlined /> Cross-Envirronement
+            </div>
+            <div className="link__info">
+              {app.environnement} <Divider type="vertical" />{" "}
+              {appok.environnement}
+            </div>
+          </Tag>
+        <Tag color="success">
+          <div className="link__info">
+            <div className="link__info__name">{appok.name} </div>
+            <div className="link__info__name">{appok.version} </div>
+            <div className="link__info__url">{appok.url} </div>
+          </div>
+        </Tag>
+        <Divider />
+      </div>
+    ))
+    }
 
-       }/>
-       <Tag color="success">{appok.name}</Tag>
-        <Tag color="success">{appok.version}</Tag>
-       <Tag color="success">{appok.url}</Tag>
-       </div>
-    )}
+    {app.applicationOk.map(appok => (
+      <div className="link">
+        <Tag color="success">
+          <div className="link__info">
+            <div className="link__info__name">{appok.name} </div>
+            <div className="link__info__name">{appok.version} </div>
+            <div className="link__info__url">{appok.url} </div>
+          </div>
+        </Tag>
+        <Divider />
+      </div>
+    ))}
   </div>
 );

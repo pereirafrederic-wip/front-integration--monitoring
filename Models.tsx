@@ -9,15 +9,13 @@ export interface AppliRetour {
 
    nom: string,
   environnement:EnumEnv,
-  version: string
+  version: string,
+  baseUrl: string
 }
 
 
-export interface AppliLinksRetour {
+export interface AppliLinksRetour extends AppliRetour {
 
-   nom: string,
-  environnement:EnumEnv,
-  version: string,
   applicationOk : Array<LinksOk>,
   applicationEchec : Array<LinksKo>
 
