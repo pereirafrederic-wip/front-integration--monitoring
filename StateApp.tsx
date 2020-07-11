@@ -77,7 +77,7 @@ export default class StateApp extends React.Component {
               {app.applicationEchec.length == 0 &&
                 nbreCrossPlateforme == 0 &&
                 app.applicationOk.length > 0 && (
-                  <Badge  className="app__badge">
+                  <Badge className="app__badge">
                     <ApiOutlined
                       style={{ fontSize: sizeIcon, color: "#87d068" }}
                     />
